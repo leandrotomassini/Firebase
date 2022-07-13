@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+
+    <form [formGroup]="usuarioFormulario">
+
+      <ion-item>
+        <ion-label>Nombre completo:</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-label class="mensaje-error" *ngIf="campoEsValido('nombre')">
+        Debe de tener por lo menos cinco caracteres.
+      </ion-label>
+
+      <ion-item>
+        <ion-label>Correo:</ion-label>
+        <ion-input formControlName="correo"></ion-input>
+      </ion-item>
+
+      <ion-button (click)="guardar()" expand="block" fill="clear" shape="round">
+        Guardar cambios
+      </ion-button>
+    </form>
+  </ion-card>
+  <ion-card>
+
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Nombre</ion-label>
+        <ion-label>Correo</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let usuario of usuarios">
+        <ion-label>{{usuario.nombre}}</ion-label>
+        <ion-label>{{usuario.correo}}</ion-label>
+        <ion-button (click)="borrar(usuario)">
+          Borrar
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>
